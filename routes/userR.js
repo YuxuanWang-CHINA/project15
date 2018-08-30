@@ -6,12 +6,21 @@ var User_doing = new User_d();
 
 user_router.use(bodyParser.json());
 user_router.route('/')
+    .all(
+        function(req, res, next)
+        {
+            //console.log('start');
+            next();
+        }
+    )
     .get(
         function(req, res, next)
         {
+            //console.log('enterget');
             User_doing.userGet(
                 function(docs)
                 {
+                    //console.log('callbackok');
                     res.set('Connection', 'close');
                     res.set('Content-Type', 'application/json');
                     res.send(JSON.stringify(docs));
@@ -28,9 +37,9 @@ user_router.route('/')
             function(hash)
             {
                 req.body.password = hash;
+                next();
             }
         );
-            next();
         }
     )
     .post(
@@ -61,9 +70,8 @@ user_router.route('/')
         function(req, res)
         {
             //res.end();
-            console.log('234');
+            //console.log('end');
         }
     );
-user_router.get('/haha', function(req,res){res.send('af')});
 
 module.exports = user_router;
