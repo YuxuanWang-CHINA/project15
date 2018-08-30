@@ -21,7 +21,7 @@ function UserDo()
 
         //console.log('enteruserdo');
         var Users_model = mongoose.model('users', users_schema);
-        Users_model.find().exec( ).then(
+        Users_model.find().exec().then(
             function (docs)
             {
                 //console.log('findok');

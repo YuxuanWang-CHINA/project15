@@ -11,4 +11,14 @@ function createPassword(myPlaintextPassword, rcallback)
     );
 };
 
+function checkPassword(inputPassword, bcryptPassword, rcallback)
+{
+    bcrypt.compare(inputPassword, bcryptPassword).then(
+        function(res) {
+            rcallback(res);
+    }
+);
+};
+
 exports.createPassword = createPassword;
+exports.checkPassword = checkPassword;
